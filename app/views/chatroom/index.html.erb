@@ -8,53 +8,37 @@
   <div class="twelve wide column">
     <div class="ui fluid raised card chatbox">
       <div class="content">
-          <div class="ui feed">
-             <div class="event">
-              <div class="content">
-                <div class="summary">
-                   <em>Elliot Fu</em>: Test message
-                </div>
-              </div>
-            </div>
-<!--             <%= @Message.all.each do |message| %> -->
-            
-            
-            <div class="event">
-              <div class="content">
-                <div class="summary">
-                   <a>Stevie Feliciano</a> added <a>Elliot Fu</a> as a friend
-                </div>
-              </div>
-            </div>
-              </div>
-            </div>
-          <div class="extra content">
-                <form class="ui reply form">
+         <div class="ui feed" id="message-container">
+            <%= render @messages %> <!-- render the partial in messages folder   -->
+          </div>
+       </div>
+       <div class="extra content">
+         <%= form_for(@message, html: {class: "ui reply form", role: "form"}, url: message_path, remote: true) do |f| %>
             <div class="field">
              <div class="ui fluid icon input">
-               <input type="text" placeholder="Enter a message">
-                <i class="bordered inverted red edit icon"></i> 
+               <%= f.text_field :body %>
+                <%= f.button '<i class="bordered inverted red edit icon"></i>'.html_safe %>
               </div>
             </div>
-          </form>
-          </div>
-          </div>
-      </div>
-      <div class="four wide column">
-        <div class="ui fluid raised card chatbox">
-          <div class="content">
-            <div class="ui inverted vertical menu">
-            <a class="active item">
-              Home
-            </a>
-            <a class="item">
-              Messages
-            </a>
-            <a class="item">
-              Friends
-            </a>
-          </div>
-          </div>
+          <% end %>
         </div>
+      </div>
+   </div>
+  <div class="four wide column">
+    <div class="ui fluid raised card chatbox">
+      <div class="content">
+        <div class="ui inverted vertical menu">
+        <a class="active item">
+          Home
+        </a>
+        <a class="item">
+          Messages
+        </a>
+        <a class="item">
+          Friends
+        </a>
+      </div>
+      </div>
     </div>
   </div>
+</div>
